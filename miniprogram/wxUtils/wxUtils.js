@@ -63,22 +63,15 @@ let wxUtils = {
   },
 
   hasUserInfo(callBack){
-    let hasLog = wx.getStorageSync('userInfo');
+    let hasLog = wx.getStorageSync('userInfo') || null;
 
-    // if(hasLog){
-    //   console.log('缓存有用户信息')      
-    // }else{
-      this.request('hasUserInfo',{},
-        (res)=>{
-          if(res.result.hasLog){
-            console.log('请求信息发现有用户信息');
-          }else{
-            console.log('请求发现没有用户信息哦');
-            callBack();
-          }
-        }
-      )
-    // }
+    if(hasLog){
+      console.log('缓存有用户信息');
+      callBack(true);  
+    }else{
+      console.log('缓存没有用户信息');
+      callBack(false);
+    }
   },
 
   showPopMessage(title,success=false,sec=1000){

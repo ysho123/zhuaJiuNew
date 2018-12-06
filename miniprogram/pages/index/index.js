@@ -4,7 +4,7 @@ const app = getApp()
 
 Page({
   data: {
-    needLog: false,
+    needLog: true,
     inputContent : '今天谁下楼拿外卖',
     joinNum : 0,
     chooseNum : 0 ,
@@ -12,21 +12,12 @@ Page({
   },
 
   onLoad: function() {
-    //获得openId
-    wxUtils.getOpenId((openId)=>{
-      // console.log(openId);
-      //判断此用户有没有在数据库留下记录
-      wxUtils.hasUserInfo(()=>{
-        this.setData({
-          needLog: true
-        });
-      }
-      );
-    },
-    (err)=>{
-      // console.log(err);
-    },
-    )
+    //判断此用户有没有在缓存留下用户信息
+    wxUtils.hasUserInfo((hasUserInfo)=>{
+      this.setData({
+        needLog: hasUserInfo ? false : true 
+      });
+    });
   },
 
   getUserInfo(res) {
@@ -38,7 +29,7 @@ Page({
           this.setData({
             needLog: false
           });
-          // wx.setStorageSync('userInfo', {hasLog : true});
+          wx.setStorageSync('userInfo', userInfo);
           this.submit();
         }
       })

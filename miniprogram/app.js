@@ -22,7 +22,7 @@ App({
   shenhe(){
     wxUtils.request('shenhe',{},(res)=>{
       this.shenhe = res.result.data.shenhe ;
-      console.log(this.shenhe);
+      console.log('shenhe',this.shenhe);
     });
   }
   

@@ -9,9 +9,9 @@ Page({
   data: {
     ac_id : '',//当前活动id
     ac_Name : '今天谁去拿外卖',
-    needLog : false,//需要授权吗？
+    needLog: true,//需要授权吗？
     hasShared : true,//是否已经分享过了
-    showSharedPic : false,//是否展示分享图片
+    showSharedPic : false,//分享图片弹窗开关
     shenhe: false,
   },
 
@@ -25,6 +25,8 @@ Page({
         hasShared : false
       });
     }
+
+    this.userLogin(); //用户是否需要授权
 
     this.setData({
       shenhe: APP.shenhe
@@ -44,39 +46,28 @@ Page({
         wx.navigateTo({
           url: `/pages/result/result?ac_id=${ac_id}&ac_Name=${ac_Name}`,
         })
-      }else{
-        this.userLogin();
       }
     })
   },
 
   userLogin(){
-    //获得openId
-    wxUtils.getOpenId((openId) => {
-      // console.log(openId);
-      //判断此用户有没有在数据库留下记录
-      wxUtils.hasUserInfo(() => {
-        this.setData({
-          needLog: true
-        });
-      }
-      );
-    },
-    (err) => {
-        // console.log(err);
-      })
+    //判断此用户有没有在缓存留下用户信息
+    wxUtils.hasUserInfo((hasUserInfo) => {
+      this.setData({
+        needLog: hasUserInfo ? false : true
+      });
+    });
   }, 
 
   getUserInfo(res) {
-    // console.log(res);
     if (res.detail.userInfo) {
       let userInfo = res.detail.userInfo;
       wxUtils.request('userLogin', userInfo, (res) => {
         if (res.result) {
           this.setData({
-            buttonType: false
+            needLog: false
           });
-          wx.setStorageSync('userInfo', { hasLog: true });
+          wx.setStorageSync('userInfo', userInfo);
           this.joinGame();
         }
       })
