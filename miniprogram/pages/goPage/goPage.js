@@ -19,12 +19,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //如果是自己创建的活动，需要分享后才能打开，其他人不用
-    if (options.creater){
-      this.setData({
-        hasShared : false
-      });
-    }
+    //如果是自己创建的活动，需要分享后才能打开，其他人不用(涉及诱导分享，去掉了)
+    // if (options.creater){
+    //   this.setData({
+    //     hasShared : false
+    //   });
+    // }
 
     this.userLogin(); //用户是否需要授权
 
@@ -80,7 +80,7 @@ Page({
   },
 
   joinGame(){
-    if(this.data.hasShared){
+    if(this.data.hasShared){//涉及诱导分享 这个功能走不了 hasShared永远都是true
       wxUtils.request('joinGame', { ac_id: this.data.ac_id }, successFuc.bind(this), failFuc.bind(this), complete.bind(this));
     }else{
       wxUtils.showPopModel();
