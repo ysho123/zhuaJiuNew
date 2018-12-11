@@ -38,7 +38,12 @@
 
   </view>
 
+  <!-- 互跳组件 -->
+  <jumpListComponent class='jumpList'></jumpListComponent>
+  
   <!-- 生成分享图组件 -->
   <sharedComponent class='sharePicArea' wx:if='{{showSharedPic}}' ac_id='{{ac_id}}' ac_Name='{{ac_Name}}'  bind:closeComponent="closeComponent"></sharedComponent>
 
 </view>
+
+  

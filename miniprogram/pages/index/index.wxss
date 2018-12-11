@@ -51,7 +51,7 @@
   height: 148rpx;
   background-image : url('https://game-1256868251.cos.ap-guangzhou.myqcloud.com/zhuajiu/index/submitBtn.png');
   background-color: transparent;
-  background-size:342rpx 148rpx;
+  background-size:100% 100%;
   margin-top: 10rpx;
 }
 

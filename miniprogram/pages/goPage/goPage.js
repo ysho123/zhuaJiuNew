@@ -19,18 +19,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //如果是自己创建的活动，需要分享后才能打开，其他人不用(涉及诱导分享，去掉了)
-    // if (options.creater){
-    //   this.setData({
-    //     hasShared : false
-    //   });
-    // }
-
-    this.userLogin(); //用户是否需要授权
-
+    //审核接口
     this.setData({
       shenhe: APP.shenhe
     });
+
+    //如果是自己创建的活动，需要分享后才能打开，其他人不用(涉嫌诱导分享，审核阶段)
+    if (options.creater && !this.data.shenhe) {
+      this.setData({
+        hasShared: false
+      });
+    }
+
+    this.userLogin(); //用户是否需要授权
 
     let { ac_Name,ac_id} = options;
     this.setData({

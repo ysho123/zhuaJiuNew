@@ -86,7 +86,7 @@ let wxUtils = {
   showPopModel(successFuc=noop){
     wx.showModal({
       title: '提示',
-      content: '分享之后才能抽签哟',
+      content: '分享给朋友后才能开始抓阄哦',
       showCancel: false,
       confirmText: '好的',
       // confirmColor: '	#000000',
