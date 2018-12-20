@@ -13,7 +13,8 @@ Page({
     ac_id: '',//当前活动id
     ac_Name: '今天谁去拿外卖',
     showSharedPic : false,//是否展示分享图
-    shenhe : false
+    shenhe : false,
+    jumpItem : {},//跳转其他小程序(非分组排序投票)
   },
 
   /**
@@ -44,6 +45,27 @@ Page({
         }
       });
     }
+
+    //获取互跳
+    this.getJumpList();
+  },
+
+  getJumpList(){
+    wxUtils.request('getJumpList',{},(res)=>{
+      console.log(res);
+      if(res.result && res.result.length > 0){
+        setInterval((length)=>{
+          let index = parseInt(Math.random()*length);
+          this.setData({
+            jumpItem: res.result[index]
+          });
+        }, 4000, res.result.length);
+      }
+    });
+  },
+
+  jumpSuccess(){
+    APP.aldstat.sendEvent(`互跳${this.data.jumpItem.name}`, { 'time': new Date().getHours().toString() });
   },
 
   refresh(){

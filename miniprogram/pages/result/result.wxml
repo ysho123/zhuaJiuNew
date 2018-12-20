@@ -8,6 +8,9 @@
     <view class='middle_container'>
         <view class='backIndex' hover-class='btn_active' hover-stay-time='100' bindtap='backIndex'></view>
         <view class='checkAgain' hover-class='btn_active' hover-stay-time='100' bindtap='backIndex'></view>
+        <navigator class='jumpOther_wrapper' target='miniProgram' app-id='{{jumpItem.appid}}' path='{{jumpItem.path}}' bindsuccess='jumpSuccess'>
+          <image class='jumpOther' src='{{jumpItem.imageUrl}}'></image>
+        </navigator> 
 
         <view class='middle_wordInfo'>
           <view class='middle_title'>{{ac_Name}}</view>
@@ -23,7 +26,7 @@
               </view>
               <image class="{{item.isLuckyMan ? 'user_result_catched' : 'user_result_notCatched'}}" src="{{item.isLuckyMan ? '../../images/result/catched.png' : '../../images/result/notCatched.png'}}"></image>
             </view>
-        </scroll-view>
+        </scroll-view> 
     </view>
 
     <view class='refresh' hover-class='btn_active' hover-stay-time='100' bindtap='refresh'>刷新结果</view>
@@ -34,12 +37,12 @@
     </view>
   </view>
 
-  <view class='bottomArea'>
-
-  </view>
-
   <!-- 互跳组件 -->
   <jumpListComponent class='jumpList'></jumpListComponent>
+
+  <view class='bottomArea'>
+    <ad unit-id='adunit-ab6fae931d9f2b6f' class='ad'></ad>
+  </view>
   
   <!-- 生成分享图组件 -->
   <sharedComponent class='sharePicArea' wx:if='{{showSharedPic}}' ac_id='{{ac_id}}' ac_Name='{{ac_Name}}'  bind:closeComponent="closeComponent"></sharedComponent>

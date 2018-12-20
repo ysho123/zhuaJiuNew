@@ -19,7 +19,7 @@
   </view>
 
   <view class='bottomArea'>
-
+      <ad unit-id='adunit-ab6fae931d9f2b6f' class='ad'></ad>
   </view>
 
   <!-- 生成分享图组件 -->

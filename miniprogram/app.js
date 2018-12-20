@@ -17,7 +17,7 @@ App({
     }
 
     this.globalData = {}
-  },
+  },  
 
   shenhe(){
     wxUtils.request('shenhe',{},(res)=>{

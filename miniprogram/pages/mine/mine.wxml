@@ -52,5 +52,9 @@
       </view>
       <!-- 排行页面内容结束 -->
   </view>
+
+  <view class='adArea'>
+    <ad unit-id='adunit-ab6fae931d9f2b6f' class='ad'></ad>
+  </view>
 </view>
    

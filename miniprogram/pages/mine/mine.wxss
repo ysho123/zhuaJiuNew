@@ -19,6 +19,9 @@ image{
   width: 100%;
   height: 100%;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .logs_box{
   margin-top: 40rpx;
@@ -205,5 +208,10 @@ button[plain] {
    width: 600rpx;
    height: 700rpx;
    margin-top: 206rpx;
+}
+.adArea{
+  margin-top:30rpx; 
+  width: 100%;
+  height: 300rpx;
 }
 
